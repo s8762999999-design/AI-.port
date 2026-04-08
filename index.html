@@ -10,6 +10,10 @@ body {
     font-family: "Segoe UI", sans-serif;
     margin: 0;
     background: #f5f7fb;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -19,7 +23,27 @@ header {
     font-weight: bold;
 }
 
+/* 一鍵按鈕 */
+.open-all-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.open-all-btn:hover {
+    background: #45a049;
+}
+
+/* 卡片區 */
 .container {
+    flex: 1;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
@@ -46,29 +70,14 @@ header {
     margin-bottom: 10px;
 }
 
-/* 一鍵開啟按鈕 */
-.open-all-btn {
-    display: block;
-    margin: 10px auto;
-    padding: 12px 20px;
-    font-size: 16px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.open-all-btn:hover {
-    background: #45a049;
-}
-
+/* Footer 固定貼底 */
 .footer {
     text-align: center;
-    padding: 20px;
+    padding: 12px;
     font-size: 14px;
     color: gray;
+    background: #ffffff;
+    border-top: 1px solid #ddd;
 }
 </style>
 </head>
@@ -77,7 +86,6 @@ header {
 
 <header>🚀 AI 工具入口</header>
 
-<!-- 一鍵開啟 -->
 <button onclick="openAllLinks()" class="open-all-btn">
 🚀 一鍵打開全部
 </button>
@@ -120,7 +128,7 @@ header {
 </div>
 
 <div class="footer">
-營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08
+營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.0
 </div>
 
 <script>
@@ -139,13 +147,13 @@ function openAllLinks() {
         "https://chat.deepseek.com/sign_in",
         "https://www.perplexity.ai/",
         "https://s8762999999-design.github.io/",
-        "https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7"
+        "https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25自製網頁DIY工具"
     ];
 
     const screenWidth = window.screen.availWidth;
     const screenHeight = window.screen.availHeight;
 
-    const cols = 4; // 每列幾個視窗
+    const cols = 4;
     const rows = Math.ceil(links.length / cols);
 
     const winWidth = Math.floor(screenWidth / cols);
@@ -164,7 +172,7 @@ function openAllLinks() {
                 "_blank",
                 `width=${winWidth},height=${winHeight},left=${left},top=${top}`
             );
-        }, index * 300); // 避免被瀏覽器擋
+        }, index * 300);
     });
 }
 </script>
