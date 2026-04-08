@@ -19,7 +19,25 @@ header {
     font-size: 24px;
     font-weight: bold;
 }
+<button onclick="openAllLinks()" class="open-all-btn">
+🚀 一鍵打開全部
+</button>
+    .open-all-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
+.open-all-btn:hover {
+    background: #45a049;
+}
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -118,10 +136,33 @@ DIY工具
 </a>
 
 </div>
-
+index * 200
+    if(confirm("確定要開啟全部工具嗎？")) {
 <div class="footer">
 營養師李亮頡研究開發 ｜ 研究開發日期 2026/04/08
 </div>
+<script>
+function openAllLinks() {
+    const links = [
+        "https://mail.google.com/mail/u/0/#inbox",
+        "https://gemini.google.com/app",
+        "https://notebooklm.google.com/",
+        "https://manus.im/",
+        "https://chatgpt.com/",
+        "https://grok.com/",
+        "https://claude.ai/new",
+        "https://chat.deepseek.com/sign_in",
+        "https://www.perplexity.ai/",
+        "https://s8762999999-design.github.io/",
+        "https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7"
+    ];
 
+    links.forEach((url, index) => {
+        setTimeout(() => {
+            window.open(url, "_blank");
+        }, index * 200); // 間隔開啟，避免被擋
+    });
+}
+</script>
 </body>
 </html>
