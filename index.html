@@ -45,7 +45,8 @@ header {
 .container {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 180px)); /* 限制寬度 */
+    justify-content: center; /* 置中 */
     gap: 20px;
     padding: 20px;
 }
@@ -54,6 +55,12 @@ header {
     background: white;
     border-radius: 15px;
     padding: 20px;
+    height: 120px; /* 🔥 固定高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 內容置中 */
+    align-items: center;
+
     text-align: center;
     text-decoration: none;
     color: black;
