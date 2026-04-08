@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI 工具入口</title>
 
-<!-- refresh -->    
 <style>
 body {
     font-family: "Segoe UI", sans-serif;
@@ -19,25 +18,7 @@ header {
     font-size: 24px;
     font-weight: bold;
 }
-<button onclick="openAllLinks()" class="open-all-btn">
-🚀 一鍵打開全部
-</button>
-    .open-all-btn {
-    display: block;
-    margin: 10px auto;
-    padding: 12px 20px;
-    font-size: 16px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
 
-.open-all-btn:hover {
-    background: #45a049;
-}
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -65,6 +46,24 @@ header {
     margin-bottom: 10px;
 }
 
+/* 一鍵開啟按鈕 */
+.open-all-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.open-all-btn:hover {
+    background: #45a049;
+}
+
 .footer {
     text-align: center;
     padding: 20px;
@@ -78,71 +77,57 @@ header {
 
 <header>🚀 AI 工具入口</header>
 
+<!-- 一鍵開啟 -->
+<button onclick="openAllLinks()" class="open-all-btn">
+🚀 一鍵打開全部
+</button>
+
 <div class="container">
 
 <a class="card" href="https://mail.google.com/mail/u/0/#inbox" target="_blank">
-<div class="icon">📧</div>
-Gmail
-</a>
+<div class="icon">📧</div>Gmail</a>
 
 <a class="card" href="https://gemini.google.com/app" target="_blank">
-<div class="icon">🤖</div>
-Gemini
-</a>
+<div class="icon">🤖</div>Gemini</a>
 
 <a class="card" href="https://notebooklm.google.com/" target="_blank">
-<div class="icon">📓</div>
-NotebookLM
-</a>
+<div class="icon">📓</div>NotebookLM</a>
 
 <a class="card" href="https://manus.im/" target="_blank">
-<div class="icon">🧠</div>
-Manus
-</a>
+<div class="icon">🧠</div>Manus</a>
 
 <a class="card" href="https://chatgpt.com/" target="_blank">
-<div class="icon">💬</div>
-ChatGPT
-</a>
+<div class="icon">💬</div>ChatGPT</a>
 
 <a class="card" href="https://grok.com/" target="_blank">
-<div class="icon">⚡</div>
-Grok
-</a>
+<div class="icon">⚡</div>Grok</a>
 
 <a class="card" href="https://claude.ai/new" target="_blank">
-<div class="icon">🧩</div>
-Claude
-</a>
+<div class="icon">🧩</div>Claude</a>
 
 <a class="card" href="https://chat.deepseek.com/sign_in" target="_blank">
-<div class="icon">🔍</div>
-DeepSeek
-</a>
+<div class="icon">🔍</div>DeepSeek</a>
 
 <a class="card" href="https://www.perplexity.ai/" target="_blank">
-<div class="icon">🧭</div>
-Perplexity
-</a>
+<div class="icon">🧭</div>Perplexity</a>
 
 <a class="card" href="https://s8762999999-design.github.io/" target="_blank">
-<div class="icon">🌐</div>
-我的網站
-</a>
+<div class="icon">🌐</div>我的網站</a>
 
 <a class="card" href="https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7" target="_blank">
-<div class="icon">🛠️</div>
-DIY工具
-</a>
+<div class="icon">🛠️</div>DIY工具</a>
 
 </div>
-index * 200
-    if(confirm("確定要開啟全部工具嗎？")) {
+
 <div class="footer">
 營養師李亮頡研究開發 ｜ 研究開發日期 2026/04/08
 </div>
+
 <script>
 function openAllLinks() {
+
+    if (!confirm("確定要開啟全部工具嗎？")) return;
+
     const links = [
         "https://mail.google.com/mail/u/0/#inbox",
         "https://gemini.google.com/app",
@@ -157,12 +142,32 @@ function openAllLinks() {
         "https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7"
     ];
 
+    const screenWidth = window.screen.availWidth;
+    const screenHeight = window.screen.availHeight;
+
+    const cols = 4; // 每列幾個視窗
+    const rows = Math.ceil(links.length / cols);
+
+    const winWidth = Math.floor(screenWidth / cols);
+    const winHeight = Math.floor(screenHeight / rows);
+
     links.forEach((url, index) => {
+        const col = index % cols;
+        const row = Math.floor(index / cols);
+
+        const left = col * winWidth;
+        const top = row * winHeight;
+
         setTimeout(() => {
-            window.open(url, "_blank");
-        }, index * 200); // 間隔開啟，避免被擋
+            window.open(
+                url,
+                "_blank",
+                `width=${winWidth},height=${winHeight},left=${left},top=${top}`
+            );
+        }, index * 300); // 避免被瀏覽器擋
     });
 }
 </script>
+
 </body>
 </html>
