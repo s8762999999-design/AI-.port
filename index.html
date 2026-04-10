@@ -1,167 +1,396 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 工具入口</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>AI 工具入口 · 真實圖標版</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
 
-<style>
-body {
-    font-family: "Segoe UI", sans-serif;
-    margin: 0;
-    background: #f5f7fb;
+    body {
+      font-family: "Segoe UI", "SF Pro Text", system-ui, sans-serif;
+      margin: 0;
+      background: #f5f7fb;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+    header {
+      text-align: center;
+      padding: 24px 16px 12px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #1e293b;
+    }
 
-header {
-    text-align: center;
-    padding: 20px;
-    font-size: 24px;
-    font-weight: bold;
-}
+    /* 一鍵按鈕 */
+    .open-all-btn {
+      display: block;
+      margin: 8px auto 16px;
+      padding: 12px 28px;
+      font-size: 17px;
+      font-weight: 600;
+      background: #2b5f8a;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      box-shadow: 0 6px 14px rgba(43, 95, 138, 0.25);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+    }
 
-/* 一鍵按鈕 */
-.open-all-btn {
-    display: block;
-    margin: 10px auto;
-    padding: 12px 20px;
-    font-size: 16px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    .open-all-btn:hover {
+      background: #1e4a6f;
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px rgba(0, 20, 40, 0.2);
+    }
 
-.open-all-btn:hover {
-    background: #45a049;
-}
+    .open-all-btn:active {
+      transform: scale(0.98);
+    }
 
-/* 卡片區（修正高度問題） */
-.container {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 180px));
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
+    /* 卡片網格 */
+    .container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 170px));
+      justify-content: center;
+      gap: 22px 16px;
+      padding: 24px 20px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
 
-.card {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    height: 120px;
-    width: 150px;
+    /* 卡片本體 */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 18px 8px 14px;
+      width: 100%;
+      aspect-ratio: 1 / 1.1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      color: #0f172a;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05), 0 2px 0 rgba(0,0,0,0.02);
+      transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+      line-height: 1.3;
+    }
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 30px -8px rgba(0, 35, 70, 0.15);
+      background: white;
+      border-color: #d0e0ff;
+    }
 
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: 0.3s;
-}
+    /* 圖標容器 — 統一顯示真實 favicon */
+    .icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      background: #f8faff;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.02);
+      transition: background 0.2s;
+    }
 
-.card:hover {
-    transform: translateY(-5px);
-}
+    .card:hover .icon {
+      background: #ffffff;
+    }
 
-.icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
+    /* favicon 圖片樣式 */
+    .icon img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 12px;
+      transition: transform 0.2s;
+    }
 
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 12px;
-    font-size: 14px;
-    color: gray;
-    background: #ffffff;
-    border-top: 1px solid #ddd;
-}
-</style>
+    .card:hover .icon img {
+      transform: scale(1.02);
+    }
+
+    /* 備用 emoji (當圖片加載失敗時顯示) */
+    .icon .fallback-emoji {
+      font-size: 44px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 卡片文字 */
+    .card span {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-top: 2px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 18px 12px;
+      font-size: 14px;
+      color: #5e6f8c;
+      background: #ffffffd9;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid #e2e8f0;
+      letter-spacing: 0.3px;
+    }
+
+    /* 響應微調 */
+    @media (max-width: 500px) {
+      .container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .icon {
+        width: 52px;
+        height: 52px;
+      }
+      .icon img {
+        width: 40px;
+        height: 40px;
+      }
+      .card span {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>🚀 AI 工具入口</header>
+<header>🚀 AI 工具入口 · 真實圖標</header>
 
 <button onclick="openAllLinks()" class="open-all-btn">
-🚀 一鍵打開全部
+  ⚡ 一鍵打開全部 (12項)
 </button>
 
 <div class="container">
 
-<a class="card" href="https://mail.google.com/mail/u/0/#inbox" target="_blank">
-<div class="icon">📧</div>Gmail</a>
+  <!-- Gmail -->
+  <a class="card" href="https://mail.google.com/mail/u/0/#inbox" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=mail.google.com&sz=64" 
+           alt="Gmail" 
+           data-emoji="📧"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>Gmail</span>
+  </a>
 
-<a class="card" href="https://gemini.google.com/app" target="_blank">
-<div class="icon">🤖</div>Gemini</a>
+  <!-- Gemini -->
+  <a class="card" href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" 
+           alt="Gemini" 
+           data-emoji="🤖"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>Gemini</span>
+  </a>
 
-<a class="card" href="https://notebooklm.google.com/" target="_blank">
-<div class="icon">📓</div>NotebookLM</a>
+  <!-- NotebookLM -->
+  <a class="card" href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=notebooklm.google.com&sz=64" 
+           alt="NotebookLM" 
+           data-emoji="📓"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>NotebookLM</span>
+  </a>
 
-<a class="card" href="https://manus.im/" target="_blank">
-<div class="icon">🧠</div>Manus</a>
+  <!-- Manus -->
+  <a class="card" href="https://manus.im/" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=manus.im&sz=64" 
+           alt="Manus" 
+           data-emoji="🧠"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>Manus</span>
+  </a>
 
-<a class="card" href="https://chatgpt.com/" target="_blank">
-<div class="icon">💬</div>ChatGPT</a>
+  <!-- ChatGPT -->
+  <a class="card" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" 
+           alt="ChatGPT" 
+           data-emoji="💬"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>ChatGPT</span>
+  </a>
 
-<a class="card" href="https://grok.com/" target="_blank">
-<div class="icon">⚡</div>Grok</a>
+  <!-- Grok -->
+  <a class="card" href="https://grok.com/" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=grok.com&sz=64" 
+           alt="Grok" 
+           data-emoji="⚡"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>Grok</span>
+  </a>
 
-<a class="card" href="https://claude.ai/new" target="_blank">
-<div class="icon">🧩</div>Claude</a>
+  <!-- Claude -->
+  <a class="card" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" 
+           alt="Claude" 
+           data-emoji="🧩"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>Claude</span>
+  </a>
 
-<a class="card" href="https://chat.deepseek.com/sign_in" target="_blank">
-<div class="icon">🔍</div>DeepSeek</a>
+  <!-- DeepSeek -->
+  <a class="card" href="https://chat.deepseek.com/sign_in" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=chat.deepseek.com&sz=64" 
+           alt="DeepSeek" 
+           data-emoji="🔍"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>DeepSeek</span>
+  </a>
 
-<a class="card" href="https://www.perplexity.ai/" target="_blank">
-<div class="icon">🧭</div>Perplexity</a>
+  <!-- Perplexity -->
+  <a class="card" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" 
+           alt="Perplexity" 
+           data-emoji="🧭"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>Perplexity</span>
+  </a>
 
-<!-- 🔥 新增 Google Flow -->
-<a class="card" href="https://labs.google/fx/zh/tools/flow" target="_blank">
-<div class="icon">🌊</div>Google Flow</a>
+  <!-- Google Flow (Labs) -->
+  <a class="card" href="https://labs.google/fx/zh/tools/flow" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=labs.google&sz=64" 
+           alt="Google Flow" 
+           data-emoji="🌊"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>Google Flow</span>
+  </a>
 
-<a class="card" href="https://s8762999999-design.github.io/" target="_blank">
-<div class="icon">🌐</div>我的網站</a>
+  <!-- 我的網站 (GitHub Pages) —— 使用 GitHub favicon 作為實際圖標 -->
+  <a class="card" href="https://s8762999999-design.github.io/" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" 
+           alt="我的網站" 
+           data-emoji="🌐"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>我的網站</span>
+  </a>
 
-<a class="card" href="https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7" target="_blank">
-<div class="icon">🛠️</div>DIY工具</a>
+  <!-- DIY工具 (gist 預覽) —— 同樣使用 GitHub 風格圖標，符合實際情境 -->
+  <a class="card" href="https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" 
+           alt="DIY工具" 
+           data-emoji="🛠️"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>DIY工具</span>
+  </a>
 
 </div>
 
 <div class="footer">
-營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.1
+  營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.2 · 真實圖標版
 </div>
 
 <script>
-function openAllLinks() {
+  // ---------- 圖片加載失敗時，顯示備用 emoji (保留原始風格) ----------
+  function fallbackToEmoji(img) {
+    // 避免重複處理
+    if (img.getAttribute('data-fallback-applied') === 'true') return;
+    img.setAttribute('data-fallback-applied', 'true');
+    
+    const parent = img.parentNode; // .icon
+    const emoji = img.getAttribute('data-emoji') || '🔗';
+    
+    // 隱藏 img
+    img.style.display = 'none';
+    
+    // 檢查是否已經存在 fallback span
+    let fallbackSpan = parent.querySelector('.fallback-emoji');
+    if (!fallbackSpan) {
+      fallbackSpan = document.createElement('div');
+      fallbackSpan.className = 'fallback-emoji';
+      fallbackSpan.setAttribute('aria-hidden', 'true');
+      parent.appendChild(fallbackSpan);
+    }
+    fallbackSpan.textContent = emoji;
+  }
 
-    if (!confirm("確定要開啟全部工具嗎？")) return;
+  // 確保所有圖片即使快取載入正常也不影響；若之後加載失敗會觸發 onerror
+  // 另外，對於已經加載失敗但沒觸發的情況（極少數），手動檢查一次
+  document.querySelectorAll('.icon img').forEach(img => {
+    if (!img.complete) {
+      // 還沒載完，交給 onerror 處理
+    } else {
+      // 如果已經載入完成但 naturalWidth 為 0 (代表載入失敗)
+      if (img.naturalWidth === 0) {
+        fallbackToEmoji(img);
+      }
+    }
+  });
 
+  // ---------- 一鍵打開全部 (保留原邏輯，修正最後一個連結，並確保流暢) ----------
+  function openAllLinks() {
+    if (!confirm("🚀 確定要一次開啟所有 12 個 AI 工具頁面嗎？\n(瀏覽器可能會阻擋彈窗，請允許)")) {
+      return;
+    }
+
+    // 完整連結清單 — 與卡片 href 完全一致，最後一項已修正編碼
     const links = [
-        "https://mail.google.com/mail/u/0/#inbox",
-        "https://gemini.google.com/app",
-        "https://notebooklm.google.com/",
-        "https://manus.im/",
-        "https://chatgpt.com/",
-        "https://grok.com/",
-        "https://claude.ai/new",
-        "https://chat.deepseek.com/sign_in",
-        "https://www.perplexity.ai/",
-        "https://labs.google/fx/zh/tools/flow",
-        "https://s8762999999-design.github.io/",
-        "https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25A自製網頁DIY工具"
+      "https://mail.google.com/mail/u/0/#inbox",
+      "https://gemini.google.com/app",
+      "https://notebooklm.google.com/",
+      "https://manus.im/",
+      "https://chatgpt.com/",
+      "https://grok.com/",
+      "https://claude.ai/new",
+      "https://chat.deepseek.com/sign_in",
+      "https://www.perplexity.ai/",
+      "https://labs.google/fx/zh/tools/flow",
+      "https://s8762999999-design.github.io/",
+      "https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7"
     ];
 
     const screenWidth = window.screen.availWidth;
@@ -174,22 +403,38 @@ function openAllLinks() {
     const winHeight = Math.floor(screenHeight / rows);
 
     links.forEach((url, index) => {
-        const col = index % cols;
-        const row = Math.floor(index / cols);
+      const col = index % cols;
+      const row = Math.floor(index / cols);
 
-        const left = col * winWidth;
-        const top = row * winHeight;
+      const left = col * winWidth;
+      const top = row * winHeight;
 
-        setTimeout(() => {
-            window.open(
-                url,
-                "_blank",
-                `width=${winWidth},height=${winHeight},left=${left},top=${top}`
-            );
-        }, index * 300);
+      setTimeout(() => {
+        const newWin = window.open(
+          url,
+          "_blank",
+          `width=${winWidth},height=${winHeight},left=${left},top=${top},menubar=no,toolbar=no,location=yes,status=no`
+        );
+        // 如果被阻擋，不影響其他視窗
+        if (!newWin) {
+          console.warn("彈窗可能被瀏覽器阻擋，請允許彈出視窗。");
+        }
+      }, index * 280); // 稍微調整間隔，更平滑
     });
-}
+  }
+
+  // (可選) 增加鍵盤快捷鍵支援: 按下 'O' 鍵觸發全部打開 (方便)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'o' || e.key === 'O') {
+      if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && !e.target.isContentEditable) {
+        e.preventDefault();
+        openAllLinks();
+      }
+    }
+  });
 </script>
 
+<!-- 備註：所有 favicon 均透過 Google S2 服務獲取，代表實際應用圖標。
+     若極少數服務因網路問題無法顯示，則自動降級為原 Emoji，體驗依然完整。 -->
 </body>
 </html>
