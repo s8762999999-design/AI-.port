@@ -56,7 +56,7 @@
       transform: scale(0.98);
     }
 
-    /* 卡片網格 */
+    /* 卡片網格 — 增加一項後依然自動適配 */
     .container {
       flex: 1;
       display: grid;
@@ -98,7 +98,7 @@
       border-color: #d0e0ff;
     }
 
-    /* 圖標容器 — 統一顯示真實 favicon */
+    /* 圖標容器 */
     .icon {
       width: 64px;
       height: 64px;
@@ -116,7 +116,6 @@
       background: #ffffff;
     }
 
-    /* favicon 圖片樣式 */
     .icon img {
       width: 48px;
       height: 48px;
@@ -129,7 +128,6 @@
       transform: scale(1.02);
     }
 
-    /* 備用 emoji (當圖片加載失敗時顯示) */
     .icon .fallback-emoji {
       font-size: 44px;
       line-height: 1;
@@ -140,7 +138,6 @@
       height: 100%;
     }
 
-    /* 卡片文字 */
     .card span {
       font-size: 16px;
       font-weight: 600;
@@ -148,7 +145,6 @@
       margin-top: 2px;
     }
 
-    /* Footer */
     .footer {
       text-align: center;
       padding: 18px 12px;
@@ -160,7 +156,6 @@
       letter-spacing: 0.3px;
     }
 
-    /* 響應微調 */
     @media (max-width: 500px) {
       .container {
         grid-template-columns: repeat(3, 1fr);
@@ -191,7 +186,7 @@
 <header>🚀 AI 工具入口 · 真實圖標</header>
 
 <button onclick="openAllLinks()" class="open-all-btn">
-  ⚡ 一鍵打開全部 (12項)
+  ⚡ 一鍵打開全部 (13項)
 </button>
 
 <div class="container">
@@ -306,7 +301,18 @@
     <span>Google Flow</span>
   </a>
 
-  <!-- 我的網站 (GitHub Pages) —— 使用 GitHub favicon 作為實際圖標 -->
+  <!-- 🔥 新增: AI Studio (Google AI Studio prompt) -->
+  <a class="card" href="https://aistudio.google.com/prompts/18O-zIP4zqmiWoRRXTjyWK2cLJ1AWM4FA" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=aistudio.google.com&sz=64" 
+           alt="AI Studio" 
+           data-emoji="🧪"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>AI Studio</span>
+  </a>
+
+  <!-- 我的網站 (GitHub Pages) -->
   <a class="card" href="https://s8762999999-design.github.io/" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" 
@@ -317,7 +323,7 @@
     <span>我的網站</span>
   </a>
 
-  <!-- DIY工具 (gist 預覽) —— 同樣使用 GitHub 風格圖標，符合實際情境 -->
+  <!-- DIY工具 (gist 預覽) -->
   <a class="card" href="https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" 
@@ -331,23 +337,20 @@
 </div>
 
 <div class="footer">
-  營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.2 · 真實圖標版
+  營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.3 · 新增 AI Studio
 </div>
 
 <script>
-  // ---------- 圖片加載失敗時，顯示備用 emoji (保留原始風格) ----------
+  // ---------- 圖片加載失敗時，顯示備用 emoji ----------
   function fallbackToEmoji(img) {
-    // 避免重複處理
     if (img.getAttribute('data-fallback-applied') === 'true') return;
     img.setAttribute('data-fallback-applied', 'true');
     
-    const parent = img.parentNode; // .icon
+    const parent = img.parentNode;
     const emoji = img.getAttribute('data-emoji') || '🔗';
     
-    // 隱藏 img
     img.style.display = 'none';
     
-    // 檢查是否已經存在 fallback span
     let fallbackSpan = parent.querySelector('.fallback-emoji');
     if (!fallbackSpan) {
       fallbackSpan = document.createElement('div');
@@ -358,26 +361,20 @@
     fallbackSpan.textContent = emoji;
   }
 
-  // 確保所有圖片即使快取載入正常也不影響；若之後加載失敗會觸發 onerror
-  // 另外，對於已經加載失敗但沒觸發的情況（極少數），手動檢查一次
+  // 檢查已載入的圖片
   document.querySelectorAll('.icon img').forEach(img => {
-    if (!img.complete) {
-      // 還沒載完，交給 onerror 處理
-    } else {
-      // 如果已經載入完成但 naturalWidth 為 0 (代表載入失敗)
-      if (img.naturalWidth === 0) {
-        fallbackToEmoji(img);
-      }
+    if (img.complete && img.naturalWidth === 0) {
+      fallbackToEmoji(img);
     }
   });
 
-  // ---------- 一鍵打開全部 (保留原邏輯，修正最後一個連結，並確保流暢) ----------
+  // ---------- 一鍵打開全部 (13項) ----------
   function openAllLinks() {
-    if (!confirm("🚀 確定要一次開啟所有 12 個 AI 工具頁面嗎？\n(瀏覽器可能會阻擋彈窗，請允許)")) {
+    if (!confirm("🚀 確定要一次開啟所有 13 個 AI 工具頁面嗎？\n(瀏覽器可能會阻擋彈窗，請允許)")) {
       return;
     }
 
-    // 完整連結清單 — 與卡片 href 完全一致，最後一項已修正編碼
+    // 包含新增的 AI Studio 連結
     const links = [
       "https://mail.google.com/mail/u/0/#inbox",
       "https://gemini.google.com/app",
@@ -389,6 +386,7 @@
       "https://chat.deepseek.com/sign_in",
       "https://www.perplexity.ai/",
       "https://labs.google/fx/zh/tools/flow",
+      "https://aistudio.google.com/prompts/18O-zIP4zqmiWoRRXTjyWK2cLJ1AWM4FA",   // 🆕 AI Studio
       "https://s8762999999-design.github.io/",
       "https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7"
     ];
@@ -415,15 +413,14 @@
           "_blank",
           `width=${winWidth},height=${winHeight},left=${left},top=${top},menubar=no,toolbar=no,location=yes,status=no`
         );
-        // 如果被阻擋，不影響其他視窗
         if (!newWin) {
           console.warn("彈窗可能被瀏覽器阻擋，請允許彈出視窗。");
         }
-      }, index * 280); // 稍微調整間隔，更平滑
+      }, index * 280);
     });
   }
 
-  // (可選) 增加鍵盤快捷鍵支援: 按下 'O' 鍵觸發全部打開 (方便)
+  // 鍵盤快捷鍵 'O' 觸發全部打開
   document.addEventListener('keydown', (e) => {
     if (e.key === 'o' || e.key === 'O') {
       if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && !e.target.isContentEditable) {
@@ -434,7 +431,5 @@
   });
 </script>
 
-<!-- 備註：所有 favicon 均透過 Google S2 服務獲取，代表實際應用圖標。
-     若極少數服務因網路問題無法顯示，則自動降級為原 Emoji，體驗依然完整。 -->
 </body>
 </html>
