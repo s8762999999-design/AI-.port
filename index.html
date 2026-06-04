@@ -56,7 +56,7 @@
       transform: scale(0.98);
     }
 
-    /* 卡片網格 — 增加一項後依然自動適配 */
+    /* 卡片網格 — 自動適配擴充至 14 項 */
     .container {
       flex: 1;
       display: grid;
@@ -186,12 +186,11 @@
 <header>🚀 AI 工具入口 · 真實圖標</header>
 
 <button onclick="openAllLinks()" class="open-all-btn">
-  ⚡ 一鍵打開全部 (13項)
+  ⚡ 一鍵打開全部 (14項)
 </button>
 
 <div class="container">
 
-  <!-- Gmail -->
   <a class="card" href="https://mail.google.com/mail/u/0/#inbox" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=mail.google.com&sz=64" 
@@ -202,7 +201,6 @@
     <span>Gmail</span>
   </a>
 
-  <!-- Gemini -->
   <a class="card" href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" 
@@ -213,7 +211,6 @@
     <span>Gemini</span>
   </a>
 
-  <!-- NotebookLM -->
   <a class="card" href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=notebooklm.google.com&sz=64" 
@@ -224,7 +221,6 @@
     <span>NotebookLM</span>
   </a>
 
-  <!-- Manus -->
   <a class="card" href="https://manus.im/" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=manus.im&sz=64" 
@@ -235,7 +231,6 @@
     <span>Manus</span>
   </a>
 
-  <!-- ChatGPT -->
   <a class="card" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" 
@@ -246,7 +241,6 @@
     <span>ChatGPT</span>
   </a>
 
-  <!-- Grok -->
   <a class="card" href="https://grok.com/" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=grok.com&sz=64" 
@@ -257,7 +251,6 @@
     <span>Grok</span>
   </a>
 
-  <!-- Claude -->
   <a class="card" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" 
@@ -268,7 +261,6 @@
     <span>Claude</span>
   </a>
 
-  <!-- DeepSeek -->
   <a class="card" href="https://chat.deepseek.com/sign_in" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=chat.deepseek.com&sz=64" 
@@ -279,7 +271,6 @@
     <span>DeepSeek</span>
   </a>
 
-  <!-- Perplexity -->
   <a class="card" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" 
@@ -290,7 +281,6 @@
     <span>Perplexity</span>
   </a>
 
-  <!-- Google Flow (Labs) -->
   <a class="card" href="https://labs.google/fx/zh/tools/flow" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=labs.google&sz=64" 
@@ -301,7 +291,6 @@
     <span>Google Flow</span>
   </a>
 
-  <!-- 🔥 新增: AI Studio (Google AI Studio prompt) -->
   <a class="card" href="https://aistudio.google.com/prompts/18O-zIP4zqmiWoRRXTjyWK2cLJ1AWM4FA" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=aistudio.google.com&sz=64" 
@@ -312,7 +301,16 @@
     <span>AI Studio</span>
   </a>
 
-  <!-- 我的網站 (GitHub Pages) -->
+  <a class="card" href="https://www.openevidence.com/" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=www.openevidence.com&sz=64" 
+           alt="OpenEvidence" 
+           data-emoji="🩺"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>OpenEvidence</span>
+  </a>
+
   <a class="card" href="https://s8762999999-design.github.io/" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" 
@@ -323,7 +321,6 @@
     <span>我的網站</span>
   </a>
 
-  <!-- DIY工具 (gist 預覽) -->
   <a class="card" href="https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" 
@@ -337,7 +334,7 @@
 </div>
 
 <div class="footer">
-  營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.3 · 新增 AI Studio
+  營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.4 · 新增 OpenEvidence
 </div>
 
 <script>
@@ -368,13 +365,12 @@
     }
   });
 
-  // ---------- 一鍵打開全部 (13項) ----------
+  // ---------- 一鍵打開全部 (14項) ----------
   function openAllLinks() {
-    if (!confirm("🚀 確定要一次開啟所有 13 個 AI 工具頁面嗎？\n(瀏覽器可能會阻擋彈窗，請允許)")) {
+    if (!confirm("🚀 確定要一次開啟所有 14 個 AI 工具頁面嗎？\n(瀏覽器可能會阻擋彈窗，請允許)")) {
       return;
     }
 
-    // 包含新增的 AI Studio 連結
     const links = [
       "https://mail.google.com/mail/u/0/#inbox",
       "https://gemini.google.com/app",
@@ -386,7 +382,8 @@
       "https://chat.deepseek.com/sign_in",
       "https://www.perplexity.ai/",
       "https://labs.google/fx/zh/tools/flow",
-      "https://aistudio.google.com/prompts/18O-zIP4zqmiWoRRXTjyWK2cLJ1AWM4FA",   // 🆕 AI Studio
+      "https://aistudio.google.com/prompts/18O-zIP4zqmiWoRRXTjyWK2cLJ1AWM4FA",
+      "https://www.openevidence.com/", // 🆕 OpenEvidence 納入一鍵開啟陣列
       "https://s8762999999-design.github.io/",
       "https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7"
     ];
