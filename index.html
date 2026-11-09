@@ -56,7 +56,7 @@
       transform: scale(0.98);
     }
 
-    /* 卡片網格 — 自動適配擴充至 15 項 */
+    /* 卡片網格 — 自動適配擴充至 16 項 */
     .container {
       flex: 1;
       display: grid;
@@ -186,7 +186,7 @@
 <header>🚀 AI 工具入口 · 真實圖標</header>
 
 <button onclick="openAllLinks()" class="open-all-btn">
-  ⚡ 一鍵打開全部 (15項)
+  ⚡ 一鍵打開全部 (16項)
 </button>
 
 <div class="container">
@@ -271,6 +271,16 @@
     <span>DeepSeek</span>
   </a>
 
+  <a class="card" href="https://chat.qwen.ai/" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=chat.qwen.ai&sz=64"
+           alt="Qwen Chat"
+           data-emoji="💬"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>Qwen Chat</span>
+  </a>
+
   <a class="card" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" 
@@ -344,7 +354,7 @@
 </div>
 
 <div class="footer">
-  營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.5 · 新增 LeapSpace
+  營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.6 · 新增 Qwen Chat
 </div>
 
 <script>
@@ -375,9 +385,9 @@
     }
   });
 
-  // ---------- 一鍵打開全部 (15項) ----------
+  // ---------- 一鍵打開全部 (16項) ----------
   function openAllLinks() {
-    if (!confirm("🚀 確定要一次開啟所有 15 個 AI 工具頁面嗎？\n(瀏覽器可能會阻擋彈窗，請允許)")) {
+    if (!confirm("🚀 確定要一次開啟所有 16 個 AI 工具頁面嗎？\n(瀏覽器可能會阻擋彈窗，請允許)")) {
       return;
     }
 
@@ -390,6 +400,7 @@
       "https://grok.com/",
       "https://claude.ai/new",
       "https://chat.deepseek.com/sign_in",
+      "https://chat.qwen.ai/",
       "https://www.perplexity.ai/",
       "https://labs.google/fx/zh/tools/flow",
       "https://aistudio.google.com/prompts/18O-zIP4zqmiWoRRXTjyWK2cLJ1AWM4FA",
