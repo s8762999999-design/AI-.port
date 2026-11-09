@@ -56,7 +56,7 @@
       transform: scale(0.98);
     }
 
-    /* 卡片網格 — 自動適配擴充至 14 項 */
+    /* 卡片網格 — 自動適配擴充至 15 項 */
     .container {
       flex: 1;
       display: grid;
@@ -186,7 +186,7 @@
 <header>🚀 AI 工具入口 · 真實圖標</header>
 
 <button onclick="openAllLinks()" class="open-all-btn">
-  ⚡ 一鍵打開全部 (14項)
+  ⚡ 一鍵打開全部 (15項)
 </button>
 
 <div class="container">
@@ -311,6 +311,16 @@
     <span>OpenEvidence</span>
   </a>
 
+  <a class="card" href="https://www.elsevier.com/products/leapspace" target="_blank" rel="noopener noreferrer">
+    <div class="icon">
+      <img src="https://www.google.com/s2/favicons?domain=www.elsevier.com&sz=64"
+           alt="LeapSpace"
+           data-emoji="📚"
+           onerror="fallbackToEmoji(this)">
+    </div>
+    <span>LeapSpace</span>
+  </a>
+
   <a class="card" href="https://s8762999999-design.github.io/" target="_blank" rel="noopener noreferrer">
     <div class="icon">
       <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" 
@@ -334,7 +344,7 @@
 </div>
 
 <div class="footer">
-  營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.4 · 新增 OpenEvidence
+  營養師 李亮頡 研究開發 ｜ 開發日期 2026/04/08 ｜ v1.5 · 新增 LeapSpace
 </div>
 
 <script>
@@ -365,9 +375,9 @@
     }
   });
 
-  // ---------- 一鍵打開全部 (14項) ----------
+  // ---------- 一鍵打開全部 (15項) ----------
   function openAllLinks() {
-    if (!confirm("🚀 確定要一次開啟所有 14 個 AI 工具頁面嗎？\n(瀏覽器可能會阻擋彈窗，請允許)")) {
+    if (!confirm("🚀 確定要一次開啟所有 15 個 AI 工具頁面嗎？\n(瀏覽器可能會阻擋彈窗，請允許)")) {
       return;
     }
 
@@ -384,6 +394,7 @@
       "https://labs.google/fx/zh/tools/flow",
       "https://aistudio.google.com/prompts/18O-zIP4zqmiWoRRXTjyWK2cLJ1AWM4FA",
       "https://www.openevidence.com/", // 🆕 OpenEvidence 納入一鍵開啟陣列
+      "https://www.elsevier.com/products/leapspace",
       "https://s8762999999-design.github.io/",
       "https://htmlpreview.github.io/?https://gist.githubusercontent.com/s8762999999-design/c0c9bfbfeebf14638d477863302a59a4/raw/8cb1681bbe47e805d12a91fa2517722b7604da33/%25E8%2587%25AA%25E8%25A3%25BD%25E7%25B6%25B2%25E9%25A0%2581DIY%25E5%25B7%25A5%25E5%2585%25B7"
     ];
